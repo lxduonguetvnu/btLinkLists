@@ -1,0 +1,33 @@
+import java.util.*;
+public class Solution {
+    public static void main (String [] args) {
+        Scanner sc = new Scanner (System.in);
+        int T = sc.nextInt(); //Nhập số bộ test (có dòng thứ 7 để đảm bảo T >= 1)
+        
+        while ((T--) != 0) {
+            int n = sc.nextInt(); 
+            int [] a = new int[100000]; 
+            for (int i = 0; i < n; ++ i) {
+                a[i] = sc.nextInt();
+            }
+            
+            long sum = 0; 
+            for (int i = 0; i < n; ++ i) {
+                sum += a[i];
+            }
+            boolean check = false; //Tạo biến kiểm tra tổng trái có bằng tổng phải sau khi lấy đi phần tử thứ i hay không
+            long sum_left = 0; //Tạo biến tính tổng trái
+            for (int i = 0; i < n; ++ i) {
+                if (sum - sum_left - a[i] == sum_left) {
+                    check = true; 
+                    break; //Ngắt khi có vị trí sau khi lấy ra khiến tổng trái bằng tổng phải
+                }
+                sum_left += a[i]; // Tổng trái sau đó cộng với phần tử được lấy ra trước đó để chuyển sang vị trí khác
+            }
+            
+            if (check == true) System.out.println("YES");
+            else System.out.println("NO");
+        }
+
+    }
+}

@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Solution {
+    public static void main (String [] args) {
+        int [][] a = new int [6][6]; //Xây dựng bảng 6x6 các số nguyên
+        Scanner sc = new Scanner (System.in);
+        for (int i = 0; i < 6; ++ i) {
+            for (int j = 0; j < 6; ++ j) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+        
+        int [][] hourglass = new int [4][4]; //Xây dựng bảng hourglass, mỗi phần tử là tổng các phần tử của mảng a theo hình đồng hồ cát như mô phỏng từ dòng 30 đến 32
+        for (int i = 0; i < 4; ++ i) {
+            for (int j = 0; j < 4; ++ j) {
+                hourglass[i][j] = a[i][j] + a[i][j+1] + a[i][j+2] + a[i+1][j+1] + a[i+2][j] + a[i+2][j+1] + a[i+2][j+2]; //Tính tổng theo hình đồng hồ cát (Quy luật sẽ giải trình với mentor sau)
+            }
+        }
+        // Tìm max trong mảng hourglass
+        int max = hourglass[0][0];
+        for (int i = 0; i < 4; ++ i) {
+            for (int j = 0; j < 4; ++ j) {
+                if (hourglass[i][j] > max) max = hourglass[i][j];
+            }
+        }
+        
+        System.out.println(max);
+    }
+}
+/*   a b c
+       d
+     e f g */
